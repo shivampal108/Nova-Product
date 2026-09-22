@@ -56,7 +56,7 @@ public class UserController {
 		
 	}
 	
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> viewUser(@PathVariable Long id){
 		
