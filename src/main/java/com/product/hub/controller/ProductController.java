@@ -1,6 +1,7 @@
 package com.product.hub.controller;
 
 import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +35,6 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService pService;
-	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PostMapping("/add")
 	public ResponseEntity<?> addProduct( @RequestBody ProductRequest request){
 		
@@ -45,7 +44,6 @@ public class ProductController {
 		return ResponseEntity.status(201).body(response);
 	}
 
-	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?> updateProduct( @RequestBody ProductRequest request, @PathVariable Long id){
 		
@@ -57,7 +55,6 @@ public class ProductController {
 
 
 	
-	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	@GetMapping("/view/{id}")
 	public ResponseEntity<?> viewProduct( @PathVariable Long id){
 		
@@ -67,7 +64,6 @@ public class ProductController {
 	}
 
 	
-	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	@GetMapping("/view-product-page/{pageNo}/{pageSize}")
 	public ResponseEntity<?> viewPageProduct( @PathVariable int pageNo, @PathVariable int pageSize){
 		
@@ -93,7 +89,6 @@ public class ProductController {
 	}
 
 	
-	@PreAuthorize("hasAnyRole('ADMIN')")
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> deleteProduct( @PathVariable Long id){
 		

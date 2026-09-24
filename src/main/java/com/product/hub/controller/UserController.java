@@ -2,6 +2,7 @@ package com.product.hub.controller;
 
 
 import java.time.LocalDateTime;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,8 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	
-	
-	@PostMapping("/add")
+
+	@PostMapping("/register")
 	public ResponseEntity<?> add(@Valid @RequestBody UserDto user) {
 		System.out.println(user);
 		
@@ -44,7 +44,6 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 		
 	}
-	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	@GetMapping("/view/{userName}")
 	public ResponseEntity<?> viewUser(@PathVariable String userName){
 		
@@ -56,7 +55,7 @@ public class UserController {
 		
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
+
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> viewUser(@PathVariable Long id){
 		
@@ -68,7 +67,6 @@ public class UserController {
 		
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?> viewUser(@PathVariable Long id, @RequestBody UserDto request){
 		
@@ -80,7 +78,6 @@ public class UserController {
 		
 	}
 	
-	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	@GetMapping("/view-all")
 	public ResponseEntity<?> viewAllUser(){
 		
